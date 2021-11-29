@@ -1,0 +1,3 @@
+mutation setVisibility( $listId: String!,$id: String!,$visibility:String!){
+    setVisibility(listId:$listId,id:$id,visibility:$visibility)
+}

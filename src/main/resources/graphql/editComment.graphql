@@ -1,0 +1,3 @@
+mutation editComment( $listId: String!,$id: String!,$content: String){
+    editComment(listId:$listId,id:$id,content:$content)
+}

@@ -1,0 +1,17 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+type Mutation{
+    addComment(listId: String!,id: String!,ownerId: String, ipAddress: String, content: String): Boolean # add comment by id
+    editComment(listId: String!, id: String!, content: String): Boolean # Edit comment by id
+    deleteComment(listId: String!,id: String!): Boolean # Delete comment by id
+    setVisibility(listId: String!, id: String!,visibility: String!): Boolean # Set visibility of the comment
+}
+type Query {
+    get:String
+}
+
+
+
+

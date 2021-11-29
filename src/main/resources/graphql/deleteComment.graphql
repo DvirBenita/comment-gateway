@@ -1,0 +1,3 @@
+mutation deleteComment( $listId: String!,$id: String!){
+    deleteComment(listId:$listId,id:$id)
+}

@@ -1,0 +1,3 @@
+mutation addComment( $listId: String!,$id: String!,$ownerId: String,$ipAddress: String,$content: String){
+    addComment(listId:$listId,id:$id,ownerId:$ownerId,ipAddress:$ipAddress,content:$content)
+}
