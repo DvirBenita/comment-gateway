@@ -1,0 +1,3 @@
+mutation {
+    setVisibility(listId:"test",id:"test",visibility:"false")
+}

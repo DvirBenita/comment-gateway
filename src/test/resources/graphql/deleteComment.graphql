@@ -1,0 +1,3 @@
+mutation {
+    deleteComment(listId:"test",id:"test")
+}

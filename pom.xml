@@ -48,7 +48,12 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphql-spring-boot-starter-test</artifactId>
+			<version>12.0.0</version>
+			<scope>test</scope>
+		</dependency>
 		<!-- GraphQL -->
 		<dependency>
 			<groupId>com.graphql-java</groupId>
@@ -56,14 +61,9 @@
 			<version>${graphql.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.graphql-java</groupId>
+			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>${graphql.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java-tools</artifactId>
-			<version>${graphql-java-tools.version}</version>
+			<version>12.0.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
 		<dependency>

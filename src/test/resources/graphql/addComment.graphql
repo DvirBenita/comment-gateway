@@ -1,0 +1,3 @@
+mutation {
+    addComment(listId:"test",id:"test",ownerId:"test",ipAddress:"test",content:"test")
+}

@@ -1,0 +1,3 @@
+mutation {
+    editComment(listId:"test",id:"test",content:"test")
+}

@@ -1,9 +1,11 @@
 package io.wetake.backend.gateways.commentgateway.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import io.wetake.backend.gateways.commentgateway.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MutationResolver implements GraphQLMutationResolver {
   @Autowired CommentService commentService;
 
