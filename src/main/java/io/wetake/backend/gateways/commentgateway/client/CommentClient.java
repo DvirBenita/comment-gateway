@@ -2,27 +2,26 @@ package io.wetake.backend.gateways.commentgateway.client;
 
 import io.wetake.backend.gateways.commentgateway.data.GraphqlRequestBody;
 import io.wetake.backend.gateways.commentgateway.data.GraphqlSchemaReaderUtil;
+import io.wetake.backend.gateways.commentgateway.service.ConfigService;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Service
 public class CommentClient {
-  public static final String PORT = "3001";
-  public static final String URL = "http://localhost:" + PORT + "/graphql/";
-  private final String url;
-
-  public CommentClient(@Value(URL) String url) {
-    this.url = url;
-  }
+  public static String commentServicePort;
+  public static String url;
+  @Autowired ConfigService configService;
 
   public Boolean addComment(
       String listId, String id, String ownerId, String ipAddress, String content)
       throws IOException {
-
+    commentServicePort = this.configService.getByKey("commentServicePort");
+    url = "http://localhost:" + commentServicePort + "/graphql/";
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
@@ -38,20 +37,20 @@ public class CommentClient {
     graphQLRequestBody.setVariables(variables.replace("contentTemp", content));
     JSONObject j =
         new JSONObject(
-            webClient
-                .post()
-                .uri(this.url)
-                .bodyValue(graphQLRequestBody)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block());
-    //    JSONObject j1 = new JSONObject(j.get("data").toString());
-    //    Boolean j2 = j1.getBoolean("addComment");
+            Objects.requireNonNull(
+                webClient
+                    .post()
+                    .uri(url)
+                    .bodyValue(graphQLRequestBody)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block()));
     return true;
   }
 
   public Boolean editComment(String listId, String id, String content) throws IOException {
-
+    commentServicePort = this.configService.getByKey("commentServicePort");
+    url = "http://localhost:" + commentServicePort + "/graphql/";
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
@@ -65,20 +64,20 @@ public class CommentClient {
     graphQLRequestBody.setVariables(variables.replace("contentTemp", content));
     JSONObject j =
         new JSONObject(
-            webClient
-                .post()
-                .uri(this.url)
-                .bodyValue(graphQLRequestBody)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block());
-    //    JSONObject j1 = new JSONObject(j.get("data").toString());
-    //    Boolean j2 = j1.getBoolean("editComment");
+            Objects.requireNonNull(
+                webClient
+                    .post()
+                    .uri(url)
+                    .bodyValue(graphQLRequestBody)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block()));
     return true;
   }
 
   public Boolean deleteComment(String listId, String id) throws IOException {
-
+    commentServicePort = this.configService.getByKey("commentServicePort");
+    url = "http://localhost:" + commentServicePort + "/graphql/";
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
@@ -91,21 +90,21 @@ public class CommentClient {
     graphQLRequestBody.setVariables(variables.replace("idTemp", id));
     JSONObject j =
         new JSONObject(
-            webClient
-                .post()
-                .uri(this.url)
-                .bodyValue(graphQLRequestBody)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block());
-    System.out.println("NOW PRINT !!!!!!!!");
-    //    JSONObject j1 = new JSONObject(j.get("data").toString());
-    //    Boolean j2 = j1.getBoolean("deleteComment");
+            Objects.requireNonNull(
+                webClient
+                    .post()
+                    .uri(url)
+                    .bodyValue(graphQLRequestBody)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block()));
+
     return true;
   }
 
   public Boolean setVisibility(String listId, String id, Boolean visibility) throws IOException {
-
+    commentServicePort = this.configService.getByKey("commentServicePort");
+    url = "http://localhost:" + commentServicePort + "/graphql/";
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
@@ -120,15 +119,15 @@ public class CommentClient {
     System.out.println(graphQLRequestBody.getVariables());
     JSONObject j =
         new JSONObject(
-            webClient
-                .post()
-                .uri(this.url)
-                .bodyValue(graphQLRequestBody)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block());
-    //    JSONObject j1 = new JSONObject(j.get("data").toString());
-    //    Boolean j2 = j1.getBoolean("setVisibility");
+            Objects.requireNonNull(
+                webClient
+                    .post()
+                    .uri(url)
+                    .bodyValue(graphQLRequestBody)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block()));
+
     return true;
   }
 }
