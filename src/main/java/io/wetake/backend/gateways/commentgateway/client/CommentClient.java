@@ -25,16 +25,20 @@ public class CommentClient {
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
-
+    // get the query
     final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("addComment");
+    // get the variables
     String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("variablesAddComment");
-
+    // set query
     graphQLRequestBody.setQuery(query);
+
+    // set variables
     variables = variables.replace("listIdTemp", listId);
     variables = variables.replace("idTemp", id);
     variables = variables.replace("ownerIdTemp", ownerId);
     variables = variables.replace("ipAddressTemp", ipAddress);
     graphQLRequestBody.setVariables(variables.replace("contentTemp", content));
+    // send request
     JSONObject j =
         new JSONObject(
             Objects.requireNonNull(
@@ -54,11 +58,13 @@ public class CommentClient {
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
-
+    // get the query
     final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("editComment");
+    // get the variables
     String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("variablesEditComment");
-
+    // set query
     graphQLRequestBody.setQuery(query);
+    // set variables
     variables = variables.replace("listIdTemp", listId);
     variables = variables.replace("idTemp", id);
     graphQLRequestBody.setVariables(variables.replace("contentTemp", content));
@@ -81,11 +87,13 @@ public class CommentClient {
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
-
+    // get the query
     final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("deleteComment");
+    // get variables
     String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("variablesDeleteComment");
-
+    // set query
     graphQLRequestBody.setQuery(query);
+    // set variables
     variables = variables.replace("listIdTemp", listId);
     graphQLRequestBody.setVariables(variables.replace("idTemp", id));
     JSONObject j =
@@ -108,11 +116,13 @@ public class CommentClient {
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
-
+    // get the query
     final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("setVisibility");
+    // get variables
     String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("variablesSetVisibility");
-
+    // set query
     graphQLRequestBody.setQuery(query);
+    // set variables
     variables = variables.replace("listIdTemp", listId);
     variables = variables.replace("idTemp", id);
     graphQLRequestBody.setVariables(variables.replace("visibilityTemp", visibility.toString()));

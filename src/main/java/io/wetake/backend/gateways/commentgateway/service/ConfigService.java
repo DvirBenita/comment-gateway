@@ -21,7 +21,7 @@ public class ConfigService {
     ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
     return client.getConf();
   }
-
+  // Here it extracts the value by key
   public String getByKey(String key) throws IOException {
     JSONObject j = new JSONObject(this.getConfig());
     return j.getString(key);

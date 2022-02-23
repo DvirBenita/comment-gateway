@@ -26,13 +26,12 @@ public class ConfClient {
     WebClient webClient = WebClient.builder().build();
 
     GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
-
+    // get the query
     final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("getConfig");
+    // get query variables
     String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("variablesGetConfig");
-
+    // here set the query
     graphQLRequestBody.setQuery(query);
-
-    graphQLRequestBody.getQuery();
 
     JSONObject jo =
         new JSONObject(
